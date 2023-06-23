@@ -25,6 +25,14 @@ deviation
 m <- lm(ln_de ~ ., data = deviation)
 summary(m)
 
+#### Rebustness Check (volatility or not volatility?)
+deviation$`ln_var` <- NULL
+deviation$`ln_var^2`<- NULL
+deviation$`ln_spread * ln_var`<- NULL
+deviation$`ln_var * ln_vol`<- NULL
+
+nw_m <- lm(ln_de ~ ., data=deviation)
+summary(nw_m)
 
 ### Equality Test
 equality_increase <- read_excel("C:\\Users\\USER\\Python Programme\\uni\\fe_assignment\\price_increase_decrease_period.xlsx", sheet = 1)
